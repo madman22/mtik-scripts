@@ -1,4 +1,4 @@
-
+# :put [$ExtractIP ip="10.1.1.1"]
 :global ExtractIP do={
     :local ipaddr [:toip $ip]
     if ([:typeof $ipaddr] = "ip") do={
@@ -9,6 +9,7 @@
     }
 }
 
+# :put [$ExtractIPFromRange ip="10.1.1.1/24"]
 :global ExtractIPFromRange do={
     :local idpos [:find $ip "/"]
     if ($idpos < 1) do={
@@ -25,6 +26,7 @@
     }
 }
 
+# :put [$ExtractPrefix ip="10.1.1.1/24"]
 :global ExtractPrefix do={
     :local idpos [:find $ip "/"]
     if ($idpos >= [:len $ip]) do={
