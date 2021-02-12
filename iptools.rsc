@@ -39,3 +39,23 @@
         :return $extracted
     }
 }
+
+# :put [$VerifyRange ip="10.1.1.1/24"]
+:global VerifyRange do={
+    :local iprange ([[:parse ":return $ip"]])
+    if ([:typeof $iprange] = "ip-prefix") do={
+        :return [:tostr $iprange]
+    } else={
+        :return "error"
+    }
+}
+# :put [$VerifyRange ip="10.1.1.1"]
+:global VerifyIP do={
+    :local ipaddr [:toip $ip]
+    if ([:typeof $ipaddr] = "ip") do={
+        :return [:tostr $ipaddr]
+    } else={
+        :global VerifyRange
+        :return [$VerifyRange ip=$ip]
+    }
+}
