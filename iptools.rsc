@@ -41,6 +41,7 @@
 }
 
 # :put [$VerifyRange ip="10.1.1.1/24"]
+# maybe check for valid ip and add /32
 :global VerifyRange do={
     :local iprange ([[:parse ":return $ip"]])
     if ([:typeof $iprange] = "ip-prefix") do={
@@ -49,7 +50,9 @@
         :return "error"
     }
 }
-# :put [$VerifyRange ip="10.1.1.1"]
+
+# :put [$VerifyIP ip="10.1.1.1/24"]
+# :put [$VerifyIP ip="10.1.1.1"]
 :global VerifyIP do={
     :local ipaddr [:toip $ip]
     if ([:typeof $ipaddr] = "ip") do={
