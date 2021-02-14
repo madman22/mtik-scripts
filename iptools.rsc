@@ -5,7 +5,7 @@
         :return [:tostr $ipaddr]
     } else={
         :global ExtractIPFromRange
-        :return [$ExtractIPFromRange]
+        :return [$ExtractIPFromRange ip=$ip]
     }
 }
 
