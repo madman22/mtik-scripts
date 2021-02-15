@@ -62,12 +62,3 @@
         :return [$VerifyRange ip=$ip]
     }
 }
-
-#disables the router deployment
-:global DisableRouter do={
-    :local output ""
-    :do { /routing ospf instance set 0 disabled=yes router-id="0.0.0.0" } on-error={  :set output "Error: Cannot reset ospf instance" }
-    :local output2 ""
-    :do { /ip address set [find comment="loopback"] disabled=yes } on-error={  :set output2 "Error: Cannot disable Loopback IP" }
-    :return ($output . " " . $output2)
-}
